@@ -4,10 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>0xmanthan</title>
-<meta name="description" content="Manthan Sharma — software engineer. Site under construction.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Manthan Sharma — software engineer. Hello.">
 <style>
   :root {
     --bg: #fafaf9; --fg: #1c1917; --muted: #78716c; --accent: #ea580c;
@@ -32,18 +29,10 @@
     transition: opacity .35s ease, transform .35s ease;
   }
   .hello.out { opacity: 0; transform: translateY(8px); }
-  .lang { color: var(--muted); font-size: .85rem; letter-spacing: .08em; text-transform: lowercase; min-height: 1.2em; margin: .5rem 0 2.5rem; transition: opacity .35s ease; }
+  .lang { color: var(--muted); font-size: .85rem; letter-spacing: .08em; text-transform: lowercase; min-height: 1.2em; margin: .5rem 0 0; transition: opacity .35s ease; }
   .hello.out + .lang { opacity: 0; }
-  .note { color: var(--muted); font-size: .95rem; line-height: 1.6; margin: 0; }
-  .note b { color: var(--fg); font-weight: 500; }
-  .cursor { display: inline-block; width: .6ch; height: 1.1em; background: var(--accent); vertical-align: -0.15em; margin-left: 2px; animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
-  footer { margin-top: 2rem; font-size: .85rem; }
-  a { color: var(--fg); text-decoration-color: var(--accent); text-underline-offset: 4px; }
-  a:hover { color: var(--accent); }
   @media (prefers-reduced-motion: reduce) {
     .hello, .lang { transition: none; }
-    .cursor { animation: none; }
   }
 </style>
 </head>
@@ -51,8 +40,6 @@
 <main>
   <h1 class="hello" id="hello" aria-live="polite">Hello</h1>
   <p class="lang" id="lang">english</p>
-  <p class="note">I'm <b>Manthan</b>. This page is still being built<span class="cursor" aria-hidden="true"></span></p>
-  <footer><a href="https://github.com/manthan0x23">github</a></footer>
 </main>
 <script>
   const greetings = [
