@@ -17,29 +17,27 @@
   html, body { height: 100%; margin: 0; }
   body {
     background: var(--bg); color: var(--fg);
-    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-family: system-ui, -apple-system, sans-serif;
     display: grid; place-items: center; padding: 24px;
   }
   main { text-align: center; max-width: 40rem; }
   .hello {
     font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans", "Noto Sans Devanagari",
                  "Noto Sans JP", "Noto Sans KR", "Noto Sans SC", "Noto Sans Arabic", sans-serif;
-    font-size: clamp(3rem, 12vw, 6.5rem); font-weight: 600; line-height: 1.15;
+    font-size: clamp(3rem, 12vw, 6.5rem); font-weight: 600; letter-spacing: -.02em; line-height: 1.15;
     min-height: 1.3em; margin: 0;
-    transition: opacity .35s ease, transform .35s ease;
+    transition: opacity .7s cubic-bezier(.4,0,.2,1), filter .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+    will-change: opacity, filter, transform;
   }
-  .hello.out { opacity: 0; transform: translateY(8px); }
-  .lang { color: var(--muted); font-size: .85rem; letter-spacing: .08em; text-transform: lowercase; min-height: 1.2em; margin: .5rem 0 0; transition: opacity .35s ease; }
-  .hello.out + .lang { opacity: 0; }
+  .hello.out { opacity: 0; filter: blur(12px); transform: scale(.96); }
   @media (prefers-reduced-motion: reduce) {
-    .hello, .lang { transition: none; }
+    .hello { transition: none; }
   }
 </style>
 </head>
 <body>
 <main>
   <h1 class="hello" id="hello" aria-live="polite">Hello</h1>
-  <p class="lang" id="lang">english</p>
 </main>
 <script>
   const greetings = [
@@ -51,17 +49,17 @@
     ["Merhaba", "turkish", "tr"], ["Γειά σου", "greek", "el"], ["שלום", "hebrew", "he"],
     ["Jambo", "swahili", "sw"], ["Hej", "swedish", "sv"]
   ];
-  const h = document.getElementById("hello"), l = document.getElementById("lang");
+  const h = document.getElementById("hello");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   let i = 0;
   setInterval(() => {
     i = (i + 1) % greetings.length;
-    const [word, name, code] = greetings[i];
-    const swap = () => { h.textContent = word; h.lang = code; l.textContent = name; h.classList.remove("out"); };
+    const [word, , code] = greetings[i];
+    const swap = () => { h.textContent = word; h.lang = code; h.classList.remove("out"); };
     if (reduce) return swap();
     h.classList.add("out");
-    setTimeout(swap, 350);
-  }, 2000);
+    setTimeout(swap, 700);
+  }, 2800);
 </script>
 </body>
 </html>
